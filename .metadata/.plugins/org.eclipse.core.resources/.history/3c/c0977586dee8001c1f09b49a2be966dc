@@ -1,0 +1,37 @@
+package com.seequestor.techtest;
+
+import com.seequestor.techtest.entity.Product;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String output = "";
+		Till till = new Till();
+		
+		Product[] collection = Main.loadProducts();
+		
+		till.scanProduct(collection[0], 1);
+		till.scanProduct(collection[1], 1);
+		
+		output += "Cost So far: " + till.getTotalValue() + "\n";
+		
+		till.voidProduct(collection[1]);
+		
+		
+	}
+	
+	
+	public static Product[] loadProducts() {
+		Product a = Product.from("A", "Item A", 50.00);
+		Product b = Product.from("B", "Item B", 30.00);
+		Product c = Product.from("C", "Item C", 20.00);
+		Product d = Product.from("D", "Item D", 15.00);
+		Product e = Product.from("E", "Item E", 3.00);
+		
+		return new Product[] {
+			a , b , c , d , e
+		};
+	}
+}

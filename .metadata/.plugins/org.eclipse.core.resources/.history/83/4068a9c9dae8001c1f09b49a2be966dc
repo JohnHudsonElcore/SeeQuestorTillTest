@@ -1,0 +1,7 @@
+package com.seequestor.techtest.rules;
+
+import com.seequestor.techtest.entity.TillProduct;
+
+public abstract class BaseRule {
+	public abstract boolean meetsCondition(TillProduct product); 
+}

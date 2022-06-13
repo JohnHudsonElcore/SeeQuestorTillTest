@@ -1,0 +1,45 @@
+package com.seequestor.techtest.entity;
+
+import com.seequestor.techtest.rules.Pricing;
+
+public class TillProduct {
+	
+	private Product item;
+	private int qty = 0;
+	private Pricing pricingRules = null;
+	
+	public TillProduct(Product item , int qty)
+	{
+		this.item = item;
+		this.qty = qty;
+		this.pricingRules = new Pricing();
+		
+	}
+	public Product getItem() {
+		return this.item;
+	}
+	public int getQty() {
+		return this.qty;
+	}
+	public TillProduct setQty(int qty)
+	{
+		this.qty = qty;
+		return this;
+	}
+	public boolean specialPriceConditionMet() {
+		
+		return false;
+	}
+	public double getTotalCost() {
+		if ( this.specialPriceConditionMet() )
+		{
+			if ( this.pricingRules.ruleMet(this) )
+			{
+				return this.pricingRules.getNewPrice(this);
+			}
+			return this.getItem().getUnitPrice() * this.getQty();
+		} else {
+			return this.getItem().getUnitPrice() * this.getQty();
+		}
+	}
+}

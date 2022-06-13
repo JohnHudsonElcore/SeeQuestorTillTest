@@ -1,0 +1,15 @@
+package com.seequestor.techtest;
+
+import java.util.ArrayList;
+
+import com.seequestor.techtest.entity.Product;
+
+public class Till {
+	
+	private ArrayList<Product> basket = new ArrayList<Product>();
+	public Till()
+	{
+		
+	}
+	
+}

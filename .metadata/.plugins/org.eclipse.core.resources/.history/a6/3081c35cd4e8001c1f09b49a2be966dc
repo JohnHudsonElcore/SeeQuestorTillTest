@@ -1,0 +1,5 @@
+package com.seequestor.techtest.entity;
+
+public class Product {
+
+}

@@ -1,0 +1,7 @@
+package com.seequestor.techtest.rules;
+
+public class ItemA {
+	
+	public static boolean conditionMet()
+	
+}

@@ -1,0 +1,29 @@
+package com.seequestor.techtest;
+
+import java.util.ArrayList;
+
+import com.seequestor.techtest.entity.Product;
+
+public class Till {
+	
+	private ArrayList<Product> basket = new ArrayList<Product>();
+	
+	public Till() {
+		
+	}
+	public Till scanProduct(Product product) {
+		this.basket.add(product);
+		return this;
+	}
+	public double getTotalValue()
+	{
+		double value = 0.00;
+		
+		for(int i = 0;i < this.basket.size(); i++) {
+			Product item = this.basket.get(i);
+			
+			value += item.getUnitPrice();
+		}
+		return value;
+	}
+}

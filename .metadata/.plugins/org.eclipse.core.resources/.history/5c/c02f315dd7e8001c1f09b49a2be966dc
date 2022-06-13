@@ -1,0 +1,47 @@
+package com.seequestor.techtest;
+
+import java.util.ArrayList;
+
+import com.seequestor.techtest.entity.Product;
+import com.seequestor.techtest.entity.TillProduct;
+
+public class Till {
+	
+	private ArrayList<TillProduct> basket = new ArrayList<TillProduct>();
+	
+	public Till() {
+		
+	}
+	public Till scanProduct(Product product , int amount) {
+		if ( this.hasProductInBasket(product) )
+		{
+			//add the amount, rather than set the amount.
+		} else {
+			this.basket.add(new TillProduct(product , amount));
+		}
+		return this;
+	}
+	
+	public boolean hasProductInBasket(Product product) {
+		for ( int i = 0; i < this.basket.size(); i++ ) {
+			TillProduct tillproduct = this.basket.get( i );
+			
+			if ( tillproduct.getItem().equals(product) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public double getTotalValue()
+	{
+		double value = 0.00;
+		
+		for(int i = 0;i < this.basket.size(); i++) {
+			TillProduct item = this.basket.get(i);
+			
+			value += item.getTotalCost();
+		}
+		return value;
+	}
+}

@@ -1,0 +1,96 @@
+package com.seequestor.techtest;
+
+import java.util.ArrayList;
+
+import com.seequestor.techtest.entity.Product;
+import com.seequestor.techtest.entity.TillProduct;
+
+public class Till {
+	
+	private ArrayList<TillProduct> basket = new ArrayList<TillProduct>();
+	private ArrayList<String> log = new ArrayList<String>();
+	
+	public Till() {
+		
+	}
+	public String getLog() {
+		String out = "";
+		
+		for ( int i = 0;i < log.size();i++ ) {
+			out += log.get(i) + "\n";
+		}
+		
+		return out;
+	}
+	public Till logString(String str) {
+		this.log.add(str);
+		return this;
+	}
+	public Till scanProduct(Product product , int amount) {
+		if ( this.hasProductInBasket(product) )
+		{
+			//add the amount, rather than set the amount.
+			this.addQuantity(product , amount);
+			this.logString("Updated Product(SKU: " + product.getSKU() + "), Added " + amount);
+		} else {
+			this.basket.add(new TillProduct(product , amount));
+			this.logString("Added Product(SKU: " + product.getSKU() + "), Qty: " + amount);
+		}
+		return this;
+	}
+	public Till voidProduct(Product product) {
+		
+		for ( int i = 0;i < this.basket.size(); i++ )
+		{
+			if ( this.basket.get(i).getItem().equals(product) )
+			{
+				this.basket.remove(i);
+			}
+		}
+		
+		this.logString("Revoked Product (SKU:" + product.getSKU() + ")");
+		
+		return this;
+	}
+	public Till addQuantity(Product product , int extra) {
+		TillProduct existing = this.getByProduct(product);
+		
+		int qty = existing.getQty();
+		
+		existing.setQty(qty + extra);
+		return this;
+	}
+	
+	public TillProduct getByProduct(Product product) {
+		for ( int i = 0; i < this.basket.size(); i++ ) {
+			TillProduct tillproduct = this.basket.get( i );
+			
+			if ( tillproduct.getItem().equals(product) ) {
+				return tillproduct;
+			}
+		}
+		return null;
+	}
+	public boolean hasProductInBasket(Product product) {
+		for ( int i = 0; i < this.basket.size(); i++ ) {
+			TillProduct tillproduct = this.basket.get( i );
+			
+			if ( tillproduct.getItem().equals(product) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public double getTotalValue()
+	{
+		double value = 0.00;
+		
+		for(int i = 0;i < this.basket.size(); i++) {
+			TillProduct item = this.basket.get(i);
+			
+			value += item.getTotalCost();
+		}
+		return value;
+	}
+}

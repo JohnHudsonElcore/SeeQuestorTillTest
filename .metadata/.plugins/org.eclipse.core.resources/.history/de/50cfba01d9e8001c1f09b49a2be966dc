@@ -1,0 +1,20 @@
+package com.seequestor.techtest.rules;
+
+import com.seequestor.techtest.entity.TillProduct;
+
+/**
+ * SINCE I HAVENT GOT ANYWHERE I WILL BE
+ * STORING INFORMATION I'LL BE HARDCODING
+ * THE PRICING RULES.
+ */
+public class Pricing {
+	
+	public Pricing()
+	{
+		
+	}
+	public boolean ruleMet(TillProduct product)
+	{
+		
+	}
+}

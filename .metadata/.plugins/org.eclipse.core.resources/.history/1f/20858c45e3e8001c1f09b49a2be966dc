@@ -1,0 +1,61 @@
+package com.seequestor.techtest.entity;
+
+public class Product {
+	
+	/**
+	 * No Constructor needed.
+	 * I decided not to use a constructor, 
+	 * because on the Main.java class, 
+	 * I use Product.from for readability, 
+	 * while new Product('A', 'Item A' , 50.00) was an option.
+	 */
+	
+	private String SKU = "";
+	private String name = "";
+	private double UnitPrice = 0.00;
+	
+	public Product(String sku , String name , double UnitPrice) {
+		this.setName(name)
+	        .setSKU(sku)
+	        .setUnitPrice(UnitPrice);
+	}	
+	
+	public String getSKU() {
+		return this.SKU;
+	}
+
+
+	public Product setSKU(String sku) {
+		this.SKU = sku;
+		return this;
+	}
+	
+	/**
+	 * @param {String} name
+	 * @return {Product}
+	 */
+	public Product setName(String name) {
+		this.name = name;
+		return this;
+	}
+	/**
+	 * @return {String} name
+	 */
+	public String getName() {
+		return this.name;
+	}
+	/**
+	 * @param {double} price
+	 * @return {Product}
+	 */
+	public Product setUnitPrice(double price) {
+		this.UnitPrice = price;
+		return this;
+	}
+	/**
+	 * @return {double} unit price
+	 */
+	public double getUnitPrice() {
+		return this.UnitPrice;
+	}
+}

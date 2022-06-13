@@ -1,0 +1,32 @@
+package com.seequestor.techtest.rules;
+
+import com.seequestor.techtest.entity.TillProduct;
+
+/**
+ * SINCE I HAVENT GOT ANYWHERE I WILL BE
+ * STORING INFORMATION I'LL BE HARDCODING
+ * THE PRICING RULES.
+ */
+public class Pricing {
+	
+	public Pricing()
+	{
+		
+	}
+	public boolean ruleMet(TillProduct product)
+	{
+		switch ( product.getItem().getSKU() )
+		{
+			case "A":
+				return product.getQty() >= 3;				
+			case "B":
+				return product.getQty() >= 2;
+			default:
+				return false;
+		}
+	}
+	public double getNewPrice(TillProduct product)
+	{
+		
+	}
+}
